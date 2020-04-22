@@ -15,3 +15,5 @@ let validateHTML = () => {
         `dev/html/**/*.html`])
         .pipe(htmlValidator());
 };
+exports.compressHTML = compressHTML;
+exports.validateHTML = validateHTML;
