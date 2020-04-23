@@ -4,6 +4,14 @@ const htmlValidator = require(`gulp-html`);
 const jsLinter = require(`gulp-eslint`);
 const jsCompressor = require(`gulp-uglify`);
 const babel = require(`gulp-babel`);
+
+const browserSync = require(`browser-sync`);
+const reload = browserSync.reload;
+
+
+
+
+
 let compressHTML = () => {
     return src([`dev/html/*.html`,`dev/html/**/*.html`])
         .pipe(htmlCompressor({collapseWhitespace: true}))
