@@ -29,6 +29,17 @@ let transpileJSForProd = () => {
         .pipe(dest(`prod/scripts`));
 
 };
+
+watch(`dev/html/**/*.html`,
+    series(validateHTML)
+).on(`change`, reload);
+
+watch(`dev/scripts/*.js`,
+    series(lintJS, transpileJSForDev)
+).on(`change`, reload);
+
+
+
 exports.compressHTML = compressHTML;
 exports.validateHTML = validateHTML;
 exports.transpileJSForDev = transpileJSForDev;
