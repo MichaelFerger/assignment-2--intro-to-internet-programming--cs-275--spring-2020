@@ -1,6 +1,7 @@
 const { src, dest, series, watch } = require(`gulp`);
 const htmlCompressor = require(`gulp-htmlmin`);
 const htmlValidator = require(`gulp-html`);
+const jsLinter = require(`gulp-eslint`);
 const jsCompressor = require(`gulp-uglify`);
 const babel = require(`gulp-babel`);
 let compressHTML = () => {
@@ -44,3 +45,4 @@ exports.compressHTML = compressHTML;
 exports.validateHTML = validateHTML;
 exports.transpileJSForDev = transpileJSForDev;
 exports.transpileJSForProd = transpileJSForProd;
+exports.lintJS = lintJS;
