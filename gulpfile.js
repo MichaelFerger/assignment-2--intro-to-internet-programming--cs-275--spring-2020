@@ -15,5 +15,21 @@ let validateHTML = () => {
         `dev/html/**/*.html`])
         .pipe(htmlValidator());
 };
+
+let transpileJSForDev = () => {
+    return src(`dev/scripts/*.js`)
+        .pipe(babel())
+        .pipe(dest(`temp/scripts`));
+};
+
+let transpileJSForProd = () => {
+    return src(`dev/scripts/*.js`)
+        .pipe(babel())
+        .pipe(jsCompressor())
+        .pipe(dest(`prod/scripts`));
+
+};
 exports.compressHTML = compressHTML;
 exports.validateHTML = validateHTML;
+exports.transpileJSForDev = transpileJSForDev;
+exports.transpileJSForProd = transpileJSForProd;
