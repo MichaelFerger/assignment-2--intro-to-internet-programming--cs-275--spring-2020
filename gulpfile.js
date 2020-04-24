@@ -10,7 +10,7 @@ const browserSync = require(`browser-sync`);
 const reload = browserSync.reload;
 
 let compressHTML = () => {
-    return src([`dev/html/*.html`,`dev/html/**/*.html`])
+    return src([`html/*.html`,`html/*.html`])
         .pipe(htmlCompressor({collapseWhitespace: true}))
         .pipe(dest(`prod`));
 };
@@ -39,19 +39,19 @@ let compileCSSForDev = () => {
 };
 
 let compileCSSForProd = () => {
-    return src(`dev/css/*.css`)
+    return src(`css/*.css`)
         .pipe(cleanCSS({compatibility: `ie8`}))
         .pipe(dest(`prod/css`));
 };
 
 let transpileJSForDev = () => {
-    return src(`dev/js/*.js`)
+    return src(`js/*.js`)
         .pipe(babel())
         .pipe(dest(`temp/js`));
 };
 
 let transpileJSForProd = () => {
-    return src(`dev/js/*.js`)
+    return src(`js/*.js`)
         .pipe(babel())
         .pipe(jsCompressor())
         .pipe(dest(`prod/js`));
@@ -72,7 +72,7 @@ let serve = () => {
         server: {
             baseDir: [
                 `temp`,
-                `dev`,
+                `./`,
                 `html`
             ]
         }
@@ -86,7 +86,7 @@ let serve = () => {
         series(lintCSS)
     ).on(`change`, reload);
 
-    watch(`dev//*.js`,
+    watch(`js/*.js`,
         series(lintJS, transpileJSForDev)
     ).on(`change`, reload);
 };
