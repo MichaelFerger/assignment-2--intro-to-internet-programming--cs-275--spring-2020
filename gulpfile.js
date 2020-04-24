@@ -99,8 +99,8 @@ exports.transpileJSForDev = transpileJSForDev;
 exports.transpileJSForProd = transpileJSForProd;
 exports.lintCSS = lintCSS;
 exports.lintJS = lintJS;
-exports.serve = series(compileCSSForDev, lintJS, transpileJSForDev,
-    validateHTML, serve);
+exports.serve = series(lintCSS, lintJS, validateHTML, serve);
+exports.dev = series(compileCSSForDev, lintJS, transpileJSForDev, validateHTML);
 exports.build = series(
     compressHTML,
     compileCSSForProd,
