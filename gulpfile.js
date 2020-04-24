@@ -35,7 +35,7 @@ let lintCSS = () => {
 let compileCSSForDev = () => {
     return src(`css/*.css`)
         .pipe(cssLinter({}))
-        .pipe(dest(`temp/css`));
+        .pipe(dest(`./temp/css`));
 };
 
 let compileCSSForProd = () => {
@@ -47,7 +47,7 @@ let compileCSSForProd = () => {
 let transpileJSForDev = () => {
     return src(`js/*.js`)
         .pipe(babel())
-        .pipe(dest(`temp/js`));
+        .pipe(dest(`./temp/js`));
 };
 
 let transpileJSForProd = () => {
@@ -71,8 +71,7 @@ let serve = () => {
         reloadDelay: 50,
         server: {
             baseDir: [
-                `temp`,
-                `./`,
+                `./temp`,
                 `html`
             ]
         }
@@ -83,7 +82,7 @@ let serve = () => {
     ).on(`change`, reload);
 
     watch(`css/*.css`,
-        series(lintCSS)
+        series(lintCSS, compileCSSForDev)
     ).on(`change`, reload);
 
     watch(`js/*.js`,
@@ -99,9 +98,8 @@ exports.transpileJSForDev = transpileJSForDev;
 exports.transpileJSForProd = transpileJSForProd;
 exports.lintCSS = lintCSS;
 exports.lintJS = lintJS;
-exports.serve = series(compileCSSForDev, lintJS, transpileJSForDev,
+exports.dev = series(compileCSSForDev, lintJS, transpileJSForDev,
     validateHTML, serve);
-exports.dev = series(compileCSSForDev, lintJS, transpileJSForDev, validateHTML);
 exports.build = series(
     compressHTML,
     compileCSSForProd,
