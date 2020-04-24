@@ -39,6 +39,12 @@ let compileCSSForDev = () => {
         .pipe(dest(`temp/css`));
 };
 
+let compileCSSForProd = () => {
+    return src(`dev/css/*.css`)
+        .pipe(cleanCSS({compatibility: `ie8`}))
+        .pipe(dest(`prod/css`));
+};
+
 let transpileJSForDev = () => {
     return src(`dev/scripts/*.js`)
         .pipe(babel())
@@ -65,6 +71,7 @@ watch(`dev/scripts/*.js`,
 
 exports.compressHTML = compressHTML;
 exports.validateHTML = validateHTML;
+exports.compileCSSForDev = compileCSSForDev;
 exports.compileCSSForProd = compileCSSForProd;
 exports.transpileJSForDev = transpileJSForDev;
 exports.transpileJSForProd = transpileJSForProd;
