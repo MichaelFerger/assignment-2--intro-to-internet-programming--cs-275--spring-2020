@@ -59,21 +59,38 @@ let transpileJSForProd = () => {
 
 };
 
-watch(`dev/html/**/*.html`,
-    series(validateHTML)
-).on(`change`, reload);
 let lintJS = () => {
     return src(`js/*.js`)
         .pipe(jsLinter())
         .pipe(jsLinter.formatEach(`compact`, process.stderr));
 };
 
+let serve = () => {
+    browserSync({
+        notify: true,
+        port: 9000,
+        reloadDelay: 50,
+        server: {
+            baseDir: [
+                `temp`,
+                `dev`,
+                `html`
+            ]
+        }
+    });
 
-watch(`dev/scripts/*.js`,
-    series(lintJS, transpileJSForDev)
-).on(`change`, reload);
+    watch(`html/*.html`,
+        series(validateHTML)
+    ).on(`change`, reload);
 
+    watch(`css/*.css`,
+        series(lintCSS)
+    ).on(`change`, reload);
 
+    watch(`dev//*.js`,
+        series(lintJS, transpileJSForDev)
+    ).on(`change`, reload);
+};
 
 exports.compressHTML = compressHTML;
 exports.validateHTML = validateHTML;
@@ -83,3 +100,5 @@ exports.transpileJSForDev = transpileJSForDev;
 exports.transpileJSForProd = transpileJSForProd;
 exports.lintCSS = lintCSS;
 exports.lintJS = lintJS;
+exports.serve = series(compileCSSForDev, lintJS, transpileJSForDev,
+    validateHTML, serve);
