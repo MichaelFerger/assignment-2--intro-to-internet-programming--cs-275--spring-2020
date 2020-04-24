@@ -102,3 +102,8 @@ exports.lintCSS = lintCSS;
 exports.lintJS = lintJS;
 exports.serve = series(compileCSSForDev, lintJS, transpileJSForDev,
     validateHTML, serve);
+exports.build = series(
+    compressHTML,
+    compileCSSForProd,
+    transpileJSForProd
+);
