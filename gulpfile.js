@@ -62,6 +62,12 @@ let transpileJSForProd = () => {
 watch(`dev/html/**/*.html`,
     series(validateHTML)
 ).on(`change`, reload);
+let lintJS = () => {
+    return src(`js/*.js`)
+        .pipe(jsLinter())
+        .pipe(jsLinter.formatEach(`compact`, process.stderr));
+};
+
 
 watch(`dev/scripts/*.js`,
     series(lintJS, transpileJSForDev)
