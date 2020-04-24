@@ -6,7 +6,6 @@ const jsCompressor = require(`gulp-uglify`);
 const babel = require(`gulp-babel`);
 const cleanCSS = require(`gulp-clean-css`);
 const cssLinter = require(`gulp-stylelint`);
-
 const browserSync = require(`browser-sync`);
 const reload = browserSync.reload;
 
