@@ -18,8 +18,8 @@ let compressHTML = () => {
 
 let validateHTML = () => {
     return src([
-        `dev/html/*.html`,
-        `dev/html/**/*.html`])
+        `html/*.html`,
+        `html/*.html`])
         .pipe(htmlValidator());
 };
 
