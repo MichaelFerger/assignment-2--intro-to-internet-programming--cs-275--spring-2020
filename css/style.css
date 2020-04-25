@@ -1,6 +1,8 @@
 * {
   font-family: Mali, serif, cursive;
   color: #000;
+  background-color: #fff9e3;
+  background-image: url('https://www.transparenttextures.com/patterns/food.png');
 }
 
 .container {
