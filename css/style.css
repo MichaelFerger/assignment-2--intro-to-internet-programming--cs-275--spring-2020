@@ -34,4 +34,6 @@
 
 #caliSubmit {
   margin-top: 10px;
+p {
+  display: none;
 }
