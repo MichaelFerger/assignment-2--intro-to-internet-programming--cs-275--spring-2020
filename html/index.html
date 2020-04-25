@@ -15,15 +15,15 @@
     </header>
     <main>
       <div class="buttons">
-        <input id="button1" type="button" name="whiteRice" value="White Rice" onclick="showDiv1()"/>
-        <input id="button2" type="button" name="caliRice" value="Sprouted California Rice" onclick="showDiv2()"/>
+        <input id="button1" type="button" name="whiteRice" value="White Rice"/>
+        <input id="button2" type="button" name="caliRice" value="Sprouted California Rice"/>
       </div>
       <div id="whiteRice" class="recipe">
         <form class="white-form">
     			<div class="form-group">
     				<label>Amount of Rice (oz): </label>
     				<input id="whiteSubmit" type="number" name="quantity">
-            <button type="button" onclick="convertWhite()">Recipe for this amount!</button>
+            <button id="button3" type="button">Recipe for this amount!</button>
             <h3>White Rice Recipe:</h3>
     			</div>
         </form>
@@ -35,7 +35,7 @@
     			<div class="form-group">
     				<label>Amount of Rice (oz): </label>
     				<input id="caliSubmit" type="number" name="quantity">
-            <button type="button" onclick="convertCali()">Recipe for this amount!</button>
+            <button id="button4" type="button">Recipe for this amount!</button>
             <h3>Sprouted California Rice Recipe:</h3>
     			</div>
         </form>
