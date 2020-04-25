@@ -16,4 +16,12 @@ function convertWhite() {
     document.getElementById(`amount1`).innerHTML = amount;
     document.getElementById(`water1`).innerHTML = water;
 }
+
+function convertCali() {
+    let amount = document.getElementById(`caliSubmit`).value;
+    let water;
+    water = amount * 1.6;
+    document.getElementById(`caliRecipe`).style.display = `block`;
+    document.getElementById(`amount2`).innerHTML = amount;
+    document.getElementById(`water2`).innerHTML = water;
 }
